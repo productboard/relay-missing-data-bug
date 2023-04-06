@@ -1,7 +1,7 @@
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 import type { FetchFunction } from 'relay-runtime';
 
-import { TOKEN } from './consts';
+const TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 const fetchQuery: FetchFunction = async (
   operation,
