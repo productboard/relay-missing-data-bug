@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3ed3f09f284a5ab05c57a61914aa318b>>
+ * @generated SignedSource<<b7a7b241351ab35eba264e3c4acd5366>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,15 +10,17 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type repoSearchQuery$variables = {
-  query: string;
+export type repoSearchRepositories_filter$variables = {
+  after?: string | null;
+  first?: number | null;
+  search: string;
 };
-export type repoSearchQuery$data = {
+export type repoSearchRepositories_filter$data = {
   readonly " $fragmentSpreads": FragmentRefs<"repoSearchRepositories">;
 };
-export type repoSearchQuery = {
-  response: repoSearchQuery$data;
-  variables: repoSearchQuery$variables;
+export type repoSearchRepositories_filter = {
+  response: repoSearchRepositories_filter$data;
+  variables: repoSearchRepositories_filter$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -26,19 +28,36 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "query"
+    "name": "after"
+  },
+  {
+    "defaultValue": 10,
+    "kind": "LocalArgument",
+    "name": "first"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "search"
   }
 ],
-v1 = [
-  {
-    "kind": "Literal",
-    "name": "first",
-    "value": 10
-  },
+v1 = {
+  "kind": "Variable",
+  "name": "after",
+  "variableName": "after"
+},
+v2 = {
+  "kind": "Variable",
+  "name": "first",
+  "variableName": "first"
+},
+v3 = [
+  (v1/*: any*/),
+  (v2/*: any*/),
   {
     "kind": "Variable",
     "name": "query",
-    "variableName": "query"
+    "variableName": "search"
   },
   {
     "kind": "Literal",
@@ -46,21 +65,21 @@ v1 = [
     "value": "REPOSITORY"
   }
 ],
-v2 = {
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "__typename",
   "storageKey": null
 },
-v3 = {
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v4 = {
+v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -72,14 +91,16 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "repoSearchQuery",
+    "name": "repoSearchRepositories_filter",
     "selections": [
       {
         "args": [
+          (v1/*: any*/),
+          (v2/*: any*/),
           {
             "kind": "Variable",
             "name": "search",
-            "variableName": "query"
+            "variableName": "search"
           }
         ],
         "kind": "FragmentSpread",
@@ -93,11 +114,11 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "repoSearchQuery",
+    "name": "repoSearchRepositories_filter",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v3/*: any*/),
         "concreteType": "SearchResultItemConnection",
         "kind": "LinkedField",
         "name": "search",
@@ -119,11 +140,11 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  (v2/*: any*/),
+                  (v4/*: any*/),
                   {
                     "kind": "InlineFragment",
                     "selections": [
-                      (v3/*: any*/),
+                      (v5/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -131,7 +152,7 @@ return {
                         "name": "name",
                         "storageKey": null
                       },
-                      (v4/*: any*/),
+                      (v6/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -147,7 +168,7 @@ return {
                         "name": "owner",
                         "plural": false,
                         "selections": [
-                          (v2/*: any*/),
+                          (v4/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -155,8 +176,8 @@ return {
                             "name": "login",
                             "storageKey": null
                           },
-                          (v4/*: any*/),
-                          (v3/*: any*/)
+                          (v6/*: any*/),
+                          (v5/*: any*/)
                         ],
                         "storageKey": null
                       }
@@ -167,7 +188,7 @@ return {
                   {
                     "kind": "InlineFragment",
                     "selections": [
-                      (v3/*: any*/)
+                      (v5/*: any*/)
                     ],
                     "type": "Node",
                     "abstractKey": "__isNode"
@@ -215,7 +236,7 @@ return {
       },
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v3/*: any*/),
         "filters": [
           "query",
           "type"
@@ -228,16 +249,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "9087a0502bea6ba3fea9840c630f80a4",
+    "cacheID": "95a4ce91939043c6e695cb5f59b90eb2",
     "id": null,
     "metadata": {},
-    "name": "repoSearchQuery",
+    "name": "repoSearchRepositories_filter",
     "operationKind": "query",
-    "text": "query repoSearchQuery(\n  $query: String!\n) {\n  ...repoSearchRepositories_B6i1\n}\n\nfragment repoSearchRepositories_B6i1 on Query {\n  search(query: $query, type: REPOSITORY, first: 10) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          url\n          description\n          owner {\n            __typename\n            login\n            url\n            id\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query repoSearchRepositories_filter(\n  $after: String\n  $first: Int = 10\n  $search: String!\n) {\n  ...repoSearchRepositories_1Ozsmw\n}\n\nfragment repoSearchRepositories_1Ozsmw on Query {\n  search(query: $search, type: REPOSITORY, first: $first, after: $after) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          url\n          description\n          owner {\n            __typename\n            login\n            url\n            id\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "dc4a220c97a0e5e1a1b26eeaa210e7ed";
+(node as any).hash = "4b13a45c8d35c9f49f5585189a14ebc3";
 
 export default node;
