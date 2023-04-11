@@ -11,13 +11,13 @@ export const ResultList = ({ queryRef }: {
     queryRef
   );
 
-  if (!data.search) {
+  if (data.search === undefined) {
     console.info(`! missing data from fragment. data is undefined? ${data.search === undefined}`);;
   }
 
   return (
     <>
-      {!data.search && <p>Search is undefined. This should not happen.</p>}
+      {data.search === undefined && <p>Search is undefined. This should not happen.</p>}
       {data.search && (
         <ul>
           {data.search?.edges?.map((maybeValue) => maybeValue?.node ? (
