@@ -32,7 +32,7 @@ finish without an error.
 When I start deleting the characters from the input and I have only `1` left, there's
 an unexpected `undefined` value in `data.search` fragment in `ResultList` component  . See example:
 
-![Video showing the missing data in the fragment](docs/video01.webm)
+[Video showing the missing data in the fragment](docs/video01.webm)
 
 This is unexpected (for me) because the generated types for the pagination fragment
 show that it should be `null`. But even in this case I would not expect this behaviour
@@ -50,7 +50,7 @@ items in the cache and use `store-or-network` fetch policy and indeed it's somet
 that seems to happen in my case. This is video from Relay dev tools and I can see
 how the cached connection switches to `Object` once the older data is discarded:
 
-![Discarded data in Relay cache](docs/video02.webm)
+[Discarded data in Relay cache](docs/video02.webm)
 
 The `search(first: 10, query: "1", type: REPOSITORY)` data is released as the string
 in input box grows.
@@ -67,7 +67,7 @@ doesn't occur and data is actually refetched!
 
 You can see it in action in this video:
 
-![Data being refetched when no parallel requests are fired](docs/video03.webm)
+[Data being refetched when no parallel requests are fired](docs/video03.webm)
 
 Once I get to `1` in input, you can see in the video that refetch is fired. When
 observing Relay cache via dev tools, the same thing happens as in the previous
