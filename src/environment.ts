@@ -1,6 +1,8 @@
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 import type { FetchFunction } from 'relay-runtime';
 
+import { logger } from './logger';
+
 const TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 const fetchQuery: FetchFunction = async (
@@ -26,4 +28,5 @@ const store = new Store(new RecordSource());
 export const environment = new Environment({
   network,
   store,
+  log: logger,
 });
