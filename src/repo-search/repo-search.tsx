@@ -1,4 +1,4 @@
-import { useState, Suspense } from "react";
+import { useState, Suspense, useCallback, startTransition } from "react";
 import { graphql } from "react-relay"
 import { useLazyLoadQuery } from "react-relay"
 
@@ -16,9 +16,15 @@ export const RepoSearch = () => {
 
   const queryRef = useLazyLoadQuery<repoSearchQuery>(repoSearchQueryString, { query: search });
 
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    startTransition(() => {
+      setSearch(e.target.value);
+    });
+  }, []);
+
   return (
     <>
-      <input onChange={e => setSearch(e.target.value)} />
+      <input onChange={handleInputChange} />
       <Suspense fallback='Loading results...'>
         <ResultList queryRef={queryRef} />
       </Suspense>
