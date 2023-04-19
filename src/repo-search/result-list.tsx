@@ -1,12 +1,14 @@
 import { usePaginationFragment } from "react-relay";
+import { useEffect } from "react";
 
 import type { repoSearchRepositories$key } from './fragments/__generated__/repoSearchRepositories.graphql';
 import { repoSearchRepositoriesFragmentString } from "./fragments/repo-search-repositories";
 
-export const ResultList = ({ queryRef }: {
+export const ResultList = ({ queryRef, search }: {
   queryRef: repoSearchRepositories$key;
+  search: string;
 }) => {
-  const { data, loadNext, hasNext } = usePaginationFragment(
+  const { data, loadNext, hasNext, refetch } = usePaginationFragment(
     repoSearchRepositoriesFragmentString,
     queryRef
   );
@@ -14,6 +16,12 @@ export const ResultList = ({ queryRef }: {
   if (data.search === undefined) {
     console.info(`! missing data from fragment. data is undefined? ${data.search === undefined}`);;
   }
+
+  useEffect(() => {
+    refetch({ search });
+  }, [search]);
+
+
 
   return (
     <>

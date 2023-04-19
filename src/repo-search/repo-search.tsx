@@ -26,7 +26,7 @@ export const RepoSearch = () => {
     <>
       <input onChange={handleInputChange} />
       <Suspense fallback='Loading results...'>
-        <ResultList queryRef={queryRef} />
+        <ResultList search={search} queryRef={queryRef} />
       </Suspense>
     </>
   );
